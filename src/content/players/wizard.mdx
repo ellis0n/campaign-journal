@@ -1,0 +1,35 @@
+---
+name: Leorel
+classN: Wizard
+race: Elf
+background: string
+alignment: neutral
+player: Colin
+hitDice: 1d8
+level: 1
+xp: 0
+hp: 8
+ac: 14
+speed: 25
+str: 8
+dex: 16
+con: 14
+int: 10
+wis: 12
+cha: 16
+prof: 2
+---
+
+import CharacterCard from '@components/CharacterCard.astro'
+
+<CharacterCard
+    name={frontmatter.name}
+    race={frontmatter.race}
+    classN={frontmatter.classN}
+    str={frontmatter.str}
+    dex={frontmatter.dex}
+    con={frontmatter.con}
+    int={frontmatter.int}
+    wis={frontmatter.wis}
+    cha={frontmatter.cha}
+/>

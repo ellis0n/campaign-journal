@@ -20,3 +20,7 @@ export type Player = {
         prof: number;
 };
 
+export type PlayerLinks = {
+        label: string;
+        url: string;
+}
