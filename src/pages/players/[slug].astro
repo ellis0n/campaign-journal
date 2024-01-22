@@ -5,8 +5,11 @@ import type { GetStaticPaths } from 'astro';
 import { getCollection } from "astro:content";
 import type { Player } from 'src/types.ts'
 import type { CollectionEntry } from "astro:content";
+import Players from '../players.astro';
 
-
+interface Props {
+  player: CollectionEntry<'players'>;
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const players = await getCollection("players");
@@ -14,20 +17,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	return (
 		players.map((player) => ({
 				params: { slug: player.slug },
-				props: {
-					player: player.data,
-					render: player.render() },
+				props: { player },
 			}))
 	);
 };
 
-const { Content } = await Astro.props.render as { Content: CollectionEntry<"players"> };
+
+const { player } = Astro.props;
+const { Content } = await player.render(); //tslint ignore-line
 ---
 
 <Layout title="">
 	<main class="text-isabel">
 		<Header />
-		
 		<section class="mx-auto w-full px-4 mt-14">
 			<Content />
 		</section>
