@@ -1,0 +1,36 @@
+---
+name: Smalls
+classN: barbarian
+race: halfling
+background: string
+alignment: neutral
+player: devon
+hitDice: 1d12
+level: 1
+xp: 0
+hp: 12
+ac: 14
+speed: 25
+str: 16
+dex: 14
+con: 14
+int: 8
+wis: 12
+cha: 10
+prof: 2
+---
+import CharacterCard from '@components/CharacterCard.astro'
+
+<CharacterCard
+    name={frontmatter.name}
+    race={frontmatter.race}
+    classN={frontmatter.classN}
+    str={frontmatter.str}
+    dex={frontmatter.dex}
+    con={frontmatter.con}
+    int={frontmatter.int}
+    wis={frontmatter.wis}
+    cha={frontmatter.cha}
+/>
+
+

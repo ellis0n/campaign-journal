@@ -1,0 +1,24 @@
+---
+const {str, dex, con, int, wis, cha} = Astro.props;
+
+const stats = [
+  {name: 'Strength', abbr: 'STR', value: str},
+  {name: 'Dexterity', abbr: 'DEX', value: dex},
+  {name: 'Constitution', abbr: 'CON', value: con},
+  {name: 'Intelligence', abbr: 'INT', value: int},
+  {name: 'Wisdom', abbr: 'WIS', value: wis},
+  {name: 'Charisma', abbr: 'CHA', value: cha},
+];
+
+---
+
+<ul class="flex justify-center">
+    {stats
+        .map((stat) => (
+            <li class="flex flex-col items-center justify-center w-16 h-16 m-2 text-center bg-gray-200 rounded-full">
+                <span class="text-xs font-bold text-gray uppercase">{stat.abbr}</span>
+                <span class="text-2xl font-bold text-trophy">{stat.value}</span>
+            </li>
+        ))
+    }
+</ul>
