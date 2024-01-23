@@ -26,7 +26,7 @@ const { reading } = Astro.props;
 const { Content } = await reading.render()
 
 ---
-<Layout>
+<Layout title={reading.data.title}>
 	<ProseLayout>
 		<Prose>
 			<Content />
