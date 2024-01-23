@@ -1,0 +1,29 @@
+<div class="tab-wrapper" x-data="{ activeTab:  0 }">
+  <div class="flex">
+    <label
+      @click="activeTab = 0"
+      class="tab-control"
+      :class="{ 'active': activeTab === 0 }"
+    >Tab 1</label>
+    <label
+      @click="activeTab = 1"
+      class="tab-control"
+      :class="{ 'active': activeTab === 1 }"
+    >Tab 2</label>
+    <label
+      @click="activeTab = 2"
+      class="tab-control"
+      :class="{ 'active': activeTab === 2 }"
+    >Tab 3</label>
+  </div>
+
+  <div class="tab-panel" :class="{ 'active': activeTab === 0 }" x-show.transition.in.opacity.duration.600="activeTab === 0">
+    <p>This is the example content of the first tab.</p>
+  </div>
+  <div class="tab-panel" :class="{ 'active': activeTab === 1 }" x-show.transition.in.opacity.duration.600="activeTab === 1">
+    <p>The second tab’s example content.</p>
+  </div>
+  <div class="tab-panel" :class="{ 'active': activeTab === 2 }" x-show.transition.in.opacity.duration.600="activeTab === 2">
+    <p>The content of the third and final tab in this set.</p>
+  </div>
+</div>

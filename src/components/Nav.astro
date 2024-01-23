@@ -2,6 +2,7 @@
 // TODO: Alpine.js for dropdown?
 
 import { getCollection } from "astro:content";
+import Dropdown from "./Tabs.astro";
 
 
 const players = await getCollection("players");
@@ -10,7 +11,6 @@ let sublinks = players.map(player => ({
     label: player.data.name,
     url: `/players/${player.slug}`
 }));
-console.log(sublinks);
 
 const links = [
     {
@@ -19,8 +19,8 @@ const links = [
         sublinks: sublinks
     },
     {
-        label: "Lore",
-        url: "/lore"
+        label: "Readings",
+        url: "/readings"
     }
 ]
 ---
@@ -28,31 +28,18 @@ const links = [
 
 
 <nav>
-    <ul class="grid grid-cols-2 gap-4 text-800 w-full">
-       {
-				links.map((link) => (
+    <ul class="grid grid-cols-2 gap-4 text-800 w-full text-trophy">
+			{
+                links.map((link) => (
+
                     <li class="">
                         <a href={link.url}>
-							{link.label}
+                            {link.label}
                         </a>
-                        {
-                            link.sublinks && (
-                                <ul class="flex flex-row text-400">
-                                    {
-                                        link.sublinks && link.sublinks.map((sublink) => (
-                                            <li class="mr-4 bg-gray">
-                                                <a href={sublink.url}>
-                                                    {sublink.label}
-                                                </a>
-                                            </li>
-                                        ))
-                                    }
-                                </ul>
-                            )
-                        }
                     </li>
-                    
-				))
-			}
+                   
+                ))
+            }   
     </ul>
 </nav>
+<script src="//unpkg.com/alpinejs" defer></script>

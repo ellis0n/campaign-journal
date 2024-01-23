@@ -40,9 +40,14 @@ export default {
 				800: 800,
 				900: 900,
 			},
+			width: {
+				content: 'min(100vw - 1.5rem, 72rem)',
+				narrow: 'min(100vw - 1.5rem, 50rem)',
+			},
 		},
 	},
 	plugins: [
+		require('@tailwindcss/typography'),
 		plugin(function ({ addVariant, addBase, theme }) {
 			// base
 			addBase({
@@ -67,19 +72,7 @@ export default {
 					lineHeight: 1.25,
 				},
 			});
-			// variants
-			addVariant('scroll', ':merge(.scroll) &');
-			addVariant('is-checked', ':merge(:checked +) &');
-			addVariant('is-active', ':merge(.active >) &');
-			addVariant('toggle', '&:merge(.toggle)');
-			addVariant('em', ({ container }) => {
-				container.walkRules((rule) => {
-					rule.selector = `.em\\:${rule.selector.slice(1)}`;
-					rule.walkDecls((decl) => {
-						decl.value = decl.value.replace('rem', 'em');
-					});
-				});
-			});
+			
 		}),
 	],
 }

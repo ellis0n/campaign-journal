@@ -1,0 +1,35 @@
+---
+
+import Prose from '@components/Prose.astro';
+import Layout from '@layouts/Layout.astro'
+import ProseLayout from '@layouts/ProseLayout.astro'
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+interface Props {
+  reading: CollectionEntry<'readings'>;
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+	const readings = await getCollection("readings");
+
+	return (
+		readings.map((reading) => ({
+				params: { slug: reading.slug },
+				props: { reading },
+			}))
+	);
+};
+
+
+const { reading } = Astro.props;
+const { Content } = await reading.render()
+
+---
+<Layout>
+	<ProseLayout>
+		<Prose>
+			<Content />
+		</Prose>
+	</ProseLayout>
+</Layout>
