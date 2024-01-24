@@ -1,5 +1,12 @@
-<div class="w-full flex justify-center py-20 h-[100dvh]">
+---
+import Prose from '@components/Prose.astro';
+
+---
+
+<div class="w-full flex justify-center py-20">
     <div class="w-content flex justify-center ">
-        <slot/>
+        <Prose>
+            <slot/>
+        </Prose>
     </div>
 </div>
