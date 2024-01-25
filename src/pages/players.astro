@@ -12,11 +12,11 @@ const players: CollectionEntry<"players">[] = await getCollection("players");
 ---
 
 <Layout title="Welcome to Astro.">
-	<main class="text-isabel">
+	<main class="text-isabel mt-20">
 
-		<section>
+		<section class="flex flex-col items-center justify-center">
 				<h2 class="text-trophy">Players</h2>
-                <ul>
+                <ul class="mt-20">
                     {players.map((player) => (
                         <li>
                             <a href={`/players/${player.slug}`}>{player.data.name}</a>
