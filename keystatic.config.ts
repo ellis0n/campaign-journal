@@ -2,18 +2,26 @@ import { config, fields, collection } from '@keystatic/core';
 
 export default config({
     storage: {
-        kind: 'local',
+        kind: 'cloud',
+    },
+    cloud: {
+        project: 'ww-dnd/campaign-journal',
+    },
+
+    ui: {
+        brand: {name: 'd&d campaign journal'}
     },
 
 
     collections: {
         players: collection({
             label: 'Players',
-            slugField: 'name',
+            slugField: 'title',
             path: 'src/content/players/*',
             format: { contentField: 'content' },
             schema: {
-                name: fields.text({label: 'Name'}),
+                title: fields.slug({ name: { label: 'Title' , description: "Set to characters primary name. This will define the slug field, which is used to set the URL for your characters page. You probably shouldn't change this.", validation: { length: {min: 2, max: 25}, }, defaultValue: "Your Characters Name" }}), // 
+                name: fields.text({ label: 'Name' , description: "The characters full name."}),
                 classN: fields.text({label: 'Class'}),
                 race: fields.text({label: 'Race'}),
                 background: fields.text({ label: 'Background' }),
@@ -32,17 +40,14 @@ export default config({
                 wis: fields.number({ label: 'WIS' }),
                 cha: fields.number({ label: 'CHA' }),
                 prof: fields.number({ label: 'Proficiency' }),
-                 content: fields.document({
+                content: fields.document({
                     label: 'Content',
                     formatting: true,
                     dividers: true,
                     links: true,
                     images: true,
                 }),
-            },
-            
-            
+            },  
         }),
-        
-        },
+    },
 });
