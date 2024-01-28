@@ -2,7 +2,7 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": "C:/Users/ellis/Desktop/sites/campaign-journal",
+    "baseUrl": ".",
     "paths": {
       "@components/*": [
         "src/components/*"
