@@ -1,5 +1,10 @@
 import { config, fields, collection } from '@keystatic/core';
 
+
+//TODO: conditional for local vs cloud:
+// see here: 
+// https://github.com/simonswiss/better-dev/blob/main/keystatic.config.tsx
+
 export default config({
     storage: {
         kind: 'cloud',
