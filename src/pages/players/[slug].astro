@@ -6,6 +6,7 @@ import { getCollection } from "astro:content";
 import type { Player } from 'src/types.ts'
 import type { CollectionEntry } from "astro:content";
 import Players from '../players.astro';
+import CharacterCard from '@components/CharacterCard.astro';
 
 interface Props {
   player: CollectionEntry<'players'>;
@@ -24,12 +25,26 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 
 const { player } = Astro.props;
+const { name, classN, race, str, dex, con, int, wis, cha } = player.data;
 const { Content } = await player.render();
 ---
 
 <Layout title="">
-	<main class="text-isabel">
-		<section class="mx-auto w-full px-4 mt-14">
+	<main class="text-isabel w-full">
+		<section class="mx-auto w-narrow px-4 mt-14 bg-isabel">
+			<header class="grid grid-cols-1">
+				<h1 class="text-1400 font-bold text-trophy">{name}</h1>
+				<h2 class="uppercase text-800 text-trophy">{classN} {race}</h2>
+			</header>
+			<CharacterCard 
+				str={str}
+				dex={dex}
+				con={con}
+				int={int}
+				wis={wis}
+				cha={cha}
+			/>
+
 			<Content />
 		</section>
 	</main>
