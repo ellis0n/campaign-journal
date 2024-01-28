@@ -65,7 +65,6 @@ export default config({
             format: { contentField: 'content' },
             schema: {
                 title: fields.slug({ name: { label: 'Title', description: "Readings Title", validation: { length: { min: 2, max: 40 }, }, defaultValue: "Readings Title" } }),
-                date: fields.date({ label: 'Date' }),
                 draft: fields.checkbox({ label: 'Draft' }),
                 
                 content: fields.document({
