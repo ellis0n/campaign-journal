@@ -48,7 +48,7 @@ export default {
 	},
 	plugins: [
 		require('@tailwindcss/typography'),
-		plugin(function ({ addVariant, addBase, theme }) {
+		plugin(function ({ addBase, theme }) {
 			// base
 			addBase({
 				h1: {

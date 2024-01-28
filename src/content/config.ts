@@ -1,5 +1,4 @@
-import type { ZodString } from "astro/zod";
-import { defineCollection, reference, z } from "astro:content";
+import { defineCollection, z } from "astro:content"; 
 
 const players = defineCollection({
         type: "content",

@@ -12,7 +12,7 @@ import keystatic from '@keystatic/astro'
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), mdx(), alpinejs(), react(), markdoc(), keystatic()],
-  site: 'https://campaign-journal.vercel.app/',
+  // site: 'https://campaign-journal.vercel.app/',
   output: "hybrid",
   adapter: vercel()
 });
