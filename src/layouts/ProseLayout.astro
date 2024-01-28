@@ -1,6 +1,12 @@
-<div class="w-full h-[100dvh] outline">
-    <div class="w-content flex justify-center">
+---
+import Prose from '@components/Prose.astro';
 
-    <slot/>
+---
+
+<div class="w-full flex justify-center py-20">
+    <div class="w-content flex justify-center ">
+        <Prose>
+            <slot/>
+        </Prose>
     </div>
 </div>
