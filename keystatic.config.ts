@@ -14,6 +14,8 @@ export default config({
 
 
     collections: {
+
+        // Players collection
         players: collection({
             label: 'Players',
             slugField: 'title',
@@ -40,6 +42,27 @@ export default config({
                 wis: fields.number({ label: 'WIS' }),
                 cha: fields.number({ label: 'CHA' }),
                 prof: fields.number({ label: 'Proficiency' }),
+                content: fields.document({
+                    label: 'Content',
+                    formatting: true,
+                    dividers: true,
+                    links: true,
+                    images: true,
+                }),
+            },  
+        }),
+
+        // Readings collection
+        readings: collection({
+            label: 'Readings',
+            slugField: 'title',
+            path: 'src/content/readings/*',
+            format: { contentField: 'content' },
+            schema: {
+                title: fields.slug({ name: { label: 'Title', description: "Readings Title", validation: { length: { min: 2, max: 40 }, }, defaultValue: "Readings Title" } }),
+                date: fields.date({ label: 'Date' }),
+                draft: fields.checkbox({ label: 'Draft' }),
+                
                 content: fields.document({
                     label: 'Content',
                     formatting: true,

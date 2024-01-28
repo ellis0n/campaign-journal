@@ -25,4 +25,13 @@ const players = defineCollection({
         }),
 });
 
-export const collections = { players }
+const readings = defineCollection({
+        type: "content",
+        schema: z.object({
+                title: z.string(),
+                date: z.date(),
+                draft: z.boolean(),
+        }),
+});
+
+export const collections = { players, readings }
