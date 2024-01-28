@@ -1,6 +1,5 @@
 ---
 
-import Prose from '@components/Prose.astro';
 import Layout from '@layouts/Layout.astro'
 import ProseLayout from '@layouts/ProseLayout.astro'
 import type { GetStaticPaths } from 'astro';
@@ -27,5 +26,7 @@ const { Content } = await reading.render()
 
 ---
 <Layout title={reading.data.title}>
+	<ProseLayout>
 		<Content />
+	</ProseLayout>
 </Layout>
