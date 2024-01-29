@@ -53,8 +53,7 @@ export default config({
                     cha: fields.number({ label: 'CHA' }),
                 },
                     { label: 'Attributes' },
-                    { description: 'The characters attributes. These are used to calculate the characters modifiers.' },
-),
+                ),
                 spellbook: fields.array(
                     fields.object({
                         name: fields.text({ label: 'Name' }),
