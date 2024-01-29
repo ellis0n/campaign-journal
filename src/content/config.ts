@@ -15,14 +15,19 @@ const players = defineCollection({
                 ac: z.number(),
                 hp: z.number(),
                 speed: z.number(),
-                str: z.number(),
-                dex: z.number(),
-                con: z.number(),
-                int: z.number(),
-                wis: z.number(),
-                cha: z.number(),
-                prof: z.number(),
-        }),
+                attributes: z.object({
+                        "str": z.number(),
+                        "dex": z.number(),
+                        "con": z.number(),
+                        "int": z.number(),
+                        "wis": z.number(),
+                        "cha": z.number(),
+                }),
+                spellbook: z.array(z.object({
+                        name: z.string(),
+                        level: z.number(),
+                })).optional(),
+        })
 });
 
 const readings = defineCollection({

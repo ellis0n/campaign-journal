@@ -1,0 +1,56 @@
+---
+import Statblock from "@components/Statblock.astro"
+
+const character = Astro.props.player;
+console.log(character)
+const { 
+  name, 
+  classN, 
+  race, 
+  background, 
+  alignment, 
+  player, 
+  hitDice, 
+  level, 
+  xp, 
+  ac, 
+  hp, 
+  speed, 
+  attributes: { str, dex, con, int, wis, cha },
+  spellbook
+} = character;
+
+console.log(spellbook)
+
+---
+
+
+<section class="bg-isabel rounded-md p-2">
+    <header class="flex flex-col gap-2 after:h-2 after:w-full after:bg-trophy after:rounded-sm">
+        <h1 class="text-night">{name}</h1>
+        <h2 class="text-gray text-600 ">{race} {classN}</h2>
+    </header>
+    <Statblock
+        str={str}
+        dex={dex}
+        con={con}
+        int={int}
+        wis={wis}
+        cha={cha}
+    /> 
+
+    { spellbook && 
+    <div class="flex flex-col gap-2">
+        <h3 class="text-gray text-600 ">Spellbook</h3>
+        <ul class="flex flex-col gap-2">
+            {spellbook.map((spell) => (
+                <li class="text-gray text-600 ">{spell.name}</li>
+            ))}
+        </ul>
+        </div>  
+    }
+    
+</section>
+
+
+

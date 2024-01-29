@@ -1,14 +1,18 @@
-import { config, fields, collection } from '@keystatic/core';
+import { config, fields, collection, type LocalConfig, type CloudConfig } from '@keystatic/core';
 
-
-//TODO: conditional for local vs cloud:
-// see here: 
+// nicked this
 // https://github.com/simonswiss/better-dev/blob/main/keystatic.config.tsx
 
+const storage: LocalConfig['storage'] | CloudConfig['storage'] =
+    process.env.NODE_ENV === 'development'
+        ? { kind: 'local' }
+        : {
+            kind: 'cloud',
+        }
+
+
 export default config({
-    storage: {
-        kind: 'cloud',
-    },
+    storage,
     cloud: {
         project: 'ww-dnd/campaign-journal',
     },
@@ -40,13 +44,27 @@ export default config({
                 ac: fields.number({ label: 'AC' }),
                 hp: fields.number({ label: 'HP' }),
                 speed: fields.number({ label: 'Speed' }),
-                str: fields.number({ label: 'STR' }),
-                dex: fields.number({ label: 'DEX' }),
-                con: fields.number({ label: 'CON' }),
-                int: fields.number({ label: 'INT' }),
-                wis: fields.number({ label: 'WIS' }),
-                cha: fields.number({ label: 'CHA' }),
-                prof: fields.number({ label: 'Proficiency' }),
+                attributes: fields.object({
+                    str: fields.number({ label: 'STR' }),
+                    dex: fields.number({ label: 'DEX' }),
+                    con: fields.number({ label: 'CON' }),
+                    int: fields.number({ label: 'INT' }),
+                    wis: fields.number({ label: 'WIS' }),
+                    cha: fields.number({ label: 'CHA' }),
+                },
+                    { label: 'Attributes' },
+                    { description: 'The characters attributes. These are used to calculate the characters modifiers.' },
+),
+                spellbook: fields.array(
+                    fields.object({
+                        name: fields.text({ label: 'Name' }),
+                        level: fields.number({ label: 'Level' }),
+                        
+                    }),
+                    { label: 'Spellbook',
+                     itemLabel: props => props.fields.name.value ?? 'Spell' }
+                    
+                ),
                 content: fields.document({
                     label: 'Content',
                     formatting: true,
