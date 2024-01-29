@@ -94,7 +94,7 @@ export default config({
                     images: true,
                     componentBlocks: {
                         map: component({
-                            preview: (props) => { return `Embed: ${props.fields.src.value}`},
+                            preview: (props) => null,
                             
                             label: 'Map',
                             schema: {
@@ -108,4 +108,3 @@ export default config({
         }),
     },
 });
-                           
