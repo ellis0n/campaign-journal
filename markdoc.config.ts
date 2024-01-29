@@ -2,11 +2,13 @@ import { defineMarkdocConfig, component } from '@astrojs/markdoc/config';
 
 export default defineMarkdocConfig({
   tags: {
-    Map: {
+    map: {
       render: component('./src/components/Map.astro'),
       attributes: {
-        type: { type: String },
+        src: { type: String },
+        title: { type: String },
       },
+
     },
   },
 });

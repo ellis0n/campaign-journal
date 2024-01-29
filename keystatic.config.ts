@@ -1,4 +1,4 @@
-import { config, fields, collection, type LocalConfig, type CloudConfig } from '@keystatic/core';
+import { config, fields, component, collection, type LocalConfig, type CloudConfig } from '@keystatic/core';
 
 // nicked this
 // https://github.com/simonswiss/better-dev/blob/main/keystatic.config.tsx
@@ -18,7 +18,7 @@ export default config({
     },
 
     ui: {
-        brand: {name: 'd&d campaign journal'}
+        brand: { name: 'd&d campaign journal' }
     },
 
 
@@ -31,10 +31,10 @@ export default config({
             path: 'src/content/players/*',
             format: { contentField: 'content' },
             schema: {
-                title: fields.slug({ name: { label: 'Title' , description: "Set to characters primary name. This will define the slug field, which is used to set the URL for your characters page. You probably shouldn't change this.", validation: { length: {min: 2, max: 25}, }, defaultValue: "Your Characters Name" }}), // 
-                name: fields.text({ label: 'Name' , description: "The characters full name."}),
-                classN: fields.text({label: 'Class'}),
-                race: fields.text({label: 'Race'}),
+                title: fields.slug({ name: { label: 'Title', description: "Set to characters primary name. This will define the slug field, which is used to set the URL for your characters page. You probably shouldn't change this.", validation: { length: { min: 2, max: 25 }, }, defaultValue: "Your Characters Name" } }), // 
+                name: fields.text({ label: 'Name', description: "The characters full name." }),
+                classN: fields.text({ label: 'Class' }),
+                race: fields.text({ label: 'Race' }),
                 background: fields.text({ label: 'Background' }),
                 alignment: fields.text({ label: 'Alignment' }),
                 player: fields.text({ label: 'Player' }),
@@ -60,8 +60,10 @@ export default config({
                         level: fields.number({ label: 'Level' }),
                         
                     }),
-                    { label: 'Spellbook',
-                     itemLabel: props => props.fields.name.value ?? 'Spell' }
+                    {
+                        label: 'Spellbook',
+                        itemLabel: props => props.fields.name.value ?? 'Spell'
+                    }
                     
                 ),
                 content: fields.document({
@@ -71,7 +73,7 @@ export default config({
                     links: true,
                     images: true,
                 }),
-            },  
+            },
         }),
 
         // Readings collection
@@ -90,8 +92,20 @@ export default config({
                     dividers: true,
                     links: true,
                     images: true,
+                    componentBlocks: {
+                        map: component({
+                            preview: (props) => { return `Embed: ${props.fields.src.value}`},
+                            
+                            label: 'Map',
+                            schema: {
+                                src: fields.text({ label: 'Source' }),
+                                title: fields.text({ label: 'Title' }),
+                            },
+                        }),
+                    },
                 }),
-            },  
+            },
         }),
     },
 });
+                           

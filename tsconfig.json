@@ -12,7 +12,7 @@
       ],
       "@layouts/*": [
         "src/layouts/*"
-      ]
+      ],
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
