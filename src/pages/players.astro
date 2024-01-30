@@ -1,26 +1,43 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { type CollectionEntry, getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+
 
 const players: CollectionEntry<"players">[] = await getCollection("players");
 
-
+console.log(players)
 
 
 ---
 
-<Layout title="Welcome to Astro.">
-	<main class="text-isabel mt-20">
+<Layout title="d&d - players">
+	<main class="text-isabel h-96 p-8">
+		<section class="flex flex-col h-full">
+                <div class="w-full h-full grid-cols-[6fr 1fr]">
 
-		<section class="flex flex-col items-center justify-center">
-				<h2 class="text-trophy">Players</h2>
-                <ul class="mt-20">
-                    {players.map((player) => (
-                        <li>
-                            <a href={`/players/${player.slug}`}>{player.data.name}</a>
-                        </li>
-                    ))}
-                </ul>
+                    <div class="flex justify-center relative col-start-1">
+
+                    <Image src={players[0].data.portrait} alt={players[0].data.name} width={512} height={512} class="rounded-xl"/>
+                    </div>
+
+
+                    <ul class=" px-20 flex items-bottom col-start-2">
+                        {players.map((player) => (
+                                <a href={`/players/${player.slug}`}>
+                                <li>
+                                {console.log(player.data.portrait)}
+                                    <Image src={player.data.portrait} alt={player.data.name} width={300} height={300} class="rounded-xl"/>
+                                    <h3 class="flex justify-center">
+                                        {player.data.name}
+                                    </h3>
+                                </li>
+                                </a>
+                        ))}
+                    </ul>
+
+                </div>
 		</section>
 	</main>
 </Layout>

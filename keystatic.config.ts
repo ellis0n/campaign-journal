@@ -1,14 +1,13 @@
 import { config, fields, component, collection, type LocalConfig, type CloudConfig } from '@keystatic/core';
 
+
 // nicked this
 // https://github.com/simonswiss/better-dev/blob/main/keystatic.config.tsx
-
 const storage: LocalConfig['storage'] | CloudConfig['storage'] =
+    // Use local storage in development
     process.env.NODE_ENV === 'development'
         ? { kind: 'local' }
-        : {
-            kind: 'cloud',
-        }
+        : { kind: 'cloud' }
 
 
 export default config({
@@ -18,12 +17,11 @@ export default config({
     },
 
     ui: {
-        brand: { name: 'd&d campaign journal' }
+        brand: { name: 'd&d campaign journal' },
+        // mark: { TODO: small svg logo },
     },
 
-
     collections: {
-
         // Players collection
         players: collection({
             label: 'Players',
@@ -66,6 +64,7 @@ export default config({
                     }
                     
                 ),
+                portrait: fields.image({ label: 'Portrait' }),
                 content: fields.document({
                     label: 'Content',
                     formatting: true,
@@ -95,7 +94,6 @@ export default config({
                     componentBlocks: {
                         map: component({
                             preview: (props) => null,
-                            
                             label: 'Map',
                             schema: {
                                 src: fields.text({ label: 'Source' }),

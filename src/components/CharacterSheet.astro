@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import Statblock from "@components/Statblock.astro"
+
 
 type Spell = {
     name: string;
@@ -7,13 +9,13 @@ type Spell = {
 }
 
 const character = Astro.props.player;
-console.log(character)
 const { 
   name, 
   classN, 
   race, 
   attributes: { str, dex, con, int, wis, cha },
   spellbook,
+  portrait
 //   background, 
 //   alignment, 
 //   player, 
@@ -25,37 +27,31 @@ const {
 //   speed, 
 } = character;
 
-console.log(spellbook)
 
 ---
 
 
-<section class="bg-isabel rounded-md p-2">
-    <header class="flex flex-col gap-2 after:h-2 after:w-full after:bg-trophy after:rounded-sm">
-        <h1 class="text-night">{name}</h1>
-        <h2 class="text-gray text-600 ">{race} {classN}</h2>
-    </header>
-    <Statblock
-        str={str}
-        dex={dex}
-        con={con}
-        int={int}
-        wis={wis}
-        cha={cha}
-    /> 
-
-    { spellbook && 
-    <div class="flex flex-col gap-2">
-        <h3 class="text-gray text-600 ">Spellbook</h3>
-        <ul class="flex flex-col gap-2">
-            {spellbook.map((spell: Spell) => (
-                <li class="text-gray text-600 ">{spell.name}</li>
-            ))}
-        </ul>
-        </div>  
-    }
+    <div class="bg-isabel rounded-xl max-h-full p-2">
+        <div class="transition-all rounded-xl ">
+            <header class="z-20 p-2 text-night">
+                <h1 class="">{name}</h1>
+                <h2 class="text-600 ">{race} {classN}</h2>
+            </header>
+        </div>
+        <Image src={portrait} alt={name} class="w-auto " />
+        <div class="row-start-2">
+            <Statblock
+                str={str}
+                dex={dex}
+                con={con}
+                int={int}
+                wis={wis}
+                cha={cha}
+            /> 
+        </div>
     
-</section>
+
+    
 
 
 
